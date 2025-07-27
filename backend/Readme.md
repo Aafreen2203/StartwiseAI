@@ -13,10 +13,15 @@ _Comprehensive Documentation & User Guide_
 4. [Project Structure](#project-structure)
 5. [API Documentation](#api-documentation)
 6. [Advanced RAG Endpoints](#advanced-rag-endpoints)
-7. [Enhancement History](#enhancement-history)
-8. [Cleanup & Maintenance](#cleanup--maintenance)
-9. [Troubleshooting](#troubleshooting)
-10. [Development Guide](#development-guide)
+7. [Basic Endpoints](#basic-endpoints)
+8. [Enhancement History](#enhancement-history)
+9. [NPM Scripts](#npm-scripts)
+10. [Troubleshooting](#troubleshooting)
+11. [Development Guide](#development-guide)
+12. [Current System Status](#current-system-status)
+13. [Future Enhancements](#future-enhancements)
+14. [Support & Contact](#support--contact)
+15. [License & Usage](#license--usage)
 
 ---
 
