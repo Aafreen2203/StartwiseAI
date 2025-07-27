@@ -1,0 +1,87 @@
+[
+  {
+    "name": "Databricks",
+    "description": "Unified analytics platform for big data and machine learning",
+    "source": "AngelList"
+  },
+  {
+    "name": "Snowflake",
+    "description": "Cloud-based data warehousing company",
+    "source": "AngelList"
+  },
+  {
+    "name": "Palantir",
+    "description": "Big data analytics and software platform",
+    "source": "AngelList"
+  },
+  {
+    "name": "UiPath",
+    "description": "Robotic process automation software company",
+    "source": "AngelList"
+  },
+  {
+    "name": "Discord",
+    "description": "Voice, video and text communication service for communities",
+    "source": "AngelList"
+  },
+  {
+    "name": "Clubhouse",
+    "description": "Audio-based social networking app",
+    "source": "AngelList"
+  },
+  {
+    "name": "Robinhood",
+    "description": "Commission-free stock trading and investing app",
+    "source": "AngelList"
+  },
+  {
+    "name": "Chime",
+    "description": "Digital banking and financial services",
+    "source": "AngelList"
+  },
+  {
+    "name": "Affirm",
+    "description": "Buy now, pay later financial technology company",
+    "source": "AngelList"
+  },
+  {
+    "name": "SpaceX",
+    "description": "Aerospace manufacturer and space transport services",
+    "source": "TechCrunch"
+  },
+  {
+    "name": "Neuralink",
+    "description": "Neurotechnology company developing brain-computer interfaces",
+    "source": "TechCrunch"
+  },
+  {
+    "name": "Rivian",
+    "description": "Electric vehicle manufacturer focusing on trucks and delivery vans",
+    "source": "TechCrunch"
+  },
+  {
+    "name": "Magic Leap",
+    "description": "Mixed reality technology company",
+    "source": "TechCrunch"
+  },
+  {
+    "name": "23andMe",
+    "description": "Personal genomics and biotechnology company",
+    "source": "TechCrunch"
+  },
+  {
+    "name": "Peloton",
+    "description": "Interactive fitness platform with connected exercise equipment",
+    "source": "TechCrunch"
+  },
+  {
+    "name": "Warby Parker",
+    "description": "Direct-to-consumer eyewear company",
+    "source": "TechCrunch"
+  },
+  {
+    "name": "Casper",
+    "description": "Direct-to-consumer mattress and sleep products company",
+    "source": "TechCrunch"
+  }
+]

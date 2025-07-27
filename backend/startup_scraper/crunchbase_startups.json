@@ -1,0 +1,77 @@
+[
+  {
+    "name": "Anthropic",
+    "description": "AI safety company developing helpful, harmless, and honest AI systems",
+    "source": "Crunchbase"
+  },
+  {
+    "name": "Stability AI",
+    "description": "Open-source generative AI company behind Stable Diffusion",
+    "source": "Crunchbase"
+  },
+  {
+    "name": "Hugging Face",
+    "description": "Platform for machine learning models and datasets collaboration",
+    "source": "Crunchbase"
+  },
+  {
+    "name": "Midjourney",
+    "description": "AI-powered image generation and artistic creation platform",
+    "source": "Crunchbase"
+  },
+  {
+    "name": "Runway",
+    "description": "Creative AI tools for video editing and content generation",
+    "source": "Crunchbase"
+  },
+  {
+    "name": "Character.AI",
+    "description": "AI chatbot platform for creating and talking to AI characters",
+    "source": "Crunchbase"
+  },
+  {
+    "name": "Jasper",
+    "description": "AI copywriting and content creation platform for marketing",
+    "source": "Crunchbase"
+  },
+  {
+    "name": "Copy.ai",
+    "description": "AI-powered writing assistant for marketing and sales content",
+    "source": "Crunchbase"
+  },
+  {
+    "name": "Synthesia",
+    "description": "AI video generation platform for creating synthetic media",
+    "source": "Crunchbase"
+  },
+  {
+    "name": "Cohere",
+    "description": "Natural language processing platform for enterprise AI applications",
+    "source": "Crunchbase"
+  },
+  {
+    "name": "Adept",
+    "description": "AI research company building general intelligence for knowledge work",
+    "source": "Crunchbase"
+  },
+  {
+    "name": "Inflection AI",
+    "description": "AI studio creating personal AI assistants and conversational AI",
+    "source": "Crunchbase"
+  },
+  {
+    "name": "Glean",
+    "description": "AI-powered workplace search and knowledge management platform",
+    "source": "Crunchbase"
+  },
+  {
+    "name": "Harvey",
+    "description": "AI legal assistant for law firms and legal professionals",
+    "source": "Crunchbase"
+  },
+  {
+    "name": "Tempus",
+    "description": "AI-driven precision medicine platform for cancer and healthcare",
+    "source": "Crunchbase"
+  }
+]

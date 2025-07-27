@@ -1,0 +1,24 @@
+{
+  "totalStartups": 66,
+  "sourceBreakdown": {
+    "Y Combinator": 35,
+    "Crunchbase": 15,
+    "Alternative Sources": 17
+  },
+  "duplicatesRemoved": 1,
+  "invalidRemoved": 0,
+  "categories": {
+    "AI/ML": 25,
+    "SaaS": 41,
+    "EdTech": 5,
+    "Analytics": 10,
+    "Mobility": 5,
+    "FinTech": 7,
+    "DevTools": 5,
+    "E-commerce": 3,
+    "Social": 4,
+    "HealthTech": 4,
+    "Other": 4
+  },
+  "lastUpdated": "2025-07-27T12:54:07.987Z"
+}

@@ -1,0 +1,32 @@
+{
+  "name": "ai-startup-backend",
+  "version": "1.0.0",
+  "description": "AI Startup Backend with RAG functionality for YC + Crunchbase data",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "scrape": "cd startup_scraper && node enhanced_yc_scraper.js && node alternative_scraper.js && node enhanced_merge_data.js",
+    "scrape:yc": "cd startup_scraper && node enhanced_yc_scraper.js",
+    "scrape:alternatives": "cd startup_scraper && node alternative_scraper.js",
+    "merge": "cd startup_scraper && node enhanced_merge_data.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ai",
+    "startups",
+    "rag",
+    "ollama",
+    "yc",
+    "crunchbase"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "axios": "^1.11.0",
+    "cheerio": "^1.1.2",
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  }
+}

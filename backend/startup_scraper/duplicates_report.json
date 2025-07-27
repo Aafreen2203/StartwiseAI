@@ -1,0 +1,14 @@
+[
+  {
+    "original": {
+      "name": "Jasper",
+      "description": "AI copywriting and content creation platform for marketing",
+      "source": "Crunchbase"
+    },
+    "duplicate": {
+      "name": "Casper",
+      "description": "Direct-to-consumer mattress and sleep products company",
+      "source": "TechCrunch"
+    }
+  }
+]
