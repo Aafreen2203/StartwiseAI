@@ -10,7 +10,8 @@
     "scrape:yc": "cd startup_scraper && node enhanced_yc_scraper.js",
     "scrape:alternatives": "cd startup_scraper && node alternative_scraper.js",
     "merge": "cd startup_scraper && node enhanced_merge_data.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test_advanced_rag.js",
+    "test:basic": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "ai",

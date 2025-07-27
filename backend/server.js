@@ -9,6 +9,7 @@ const {
   constructContext,
   loadStartupData,
 } = require("./services/ragService");
+const { AdvancedRAGService } = require("./services/advancedRAGService");
 
 const app = express();
 const PORT = 5000;
@@ -18,12 +19,14 @@ app.use(express.json());
 
 // Initialize enhanced RAG service
 const ragService = new EnhancedRAGService();
+const advancedRAG = new AdvancedRAGService();
 let startupData = [];
 
 const loadData = () => {
   try {
     startupData = loadStartupData();
     ragService.startupData = startupData; // Update RAG service data
+    advancedRAG.startupData = startupData; // Update advanced RAG service data
     console.log(`✅ Loaded ${startupData.length} startup records`);
   } catch (error) {
     console.error("❌ Error loading startup data:", error);
@@ -226,6 +229,343 @@ app.post("/api/search", (req, res) => {
   } catch (error) {
     console.error("❌ Error in search:", error);
     res.status(500).json({ error: "Search failed" });
+  }
+});
+
+// 🔍 Advanced RAG Endpoints
+
+// 1. Idea Differentiation Insights
+app.post("/api/advanced/idea-differentiation", async (req, res) => {
+  try {
+    const { userIdea, options = {} } = req.body;
+
+    if (!userIdea) {
+      return res.status(400).json({ error: "User idea is required" });
+    }
+
+    console.log(`🔍 Analyzing idea differentiation: "${userIdea}"`);
+
+    const result = await advancedRAG.generateIdeaDifferentiation(
+      userIdea,
+      options
+    );
+
+    res.json({
+      success: true,
+      userIdea,
+      ...result,
+      timestamp: new Date().toISOString(),
+    });
+  } catch (error) {
+    console.error("❌ Error in idea differentiation:", error);
+    res.status(500).json({
+      error: "Failed to analyze idea differentiation",
+      details: error.message,
+    });
+  }
+});
+
+// 2. Target Market Suggestions
+app.post("/api/advanced/target-market", async (req, res) => {
+  try {
+    const { userIdea, options = {} } = req.body;
+
+    if (!userIdea) {
+      return res.status(400).json({ error: "User idea is required" });
+    }
+
+    console.log(`🎯 Analyzing target market: "${userIdea}"`);
+
+    const result = await advancedRAG.generateTargetMarketSuggestions(
+      userIdea,
+      options
+    );
+
+    res.json({
+      success: true,
+      userIdea,
+      ...result,
+      timestamp: new Date().toISOString(),
+    });
+  } catch (error) {
+    console.error("❌ Error in target market analysis:", error);
+    res.status(500).json({
+      error: "Failed to analyze target market",
+      details: error.message,
+    });
+  }
+});
+
+// 3. Monetization Strategy Ideas
+app.post("/api/advanced/monetization", async (req, res) => {
+  try {
+    const { userIdea, options = {} } = req.body;
+
+    if (!userIdea) {
+      return res.status(400).json({ error: "User idea is required" });
+    }
+
+    console.log(`💡 Analyzing monetization strategies: "${userIdea}"`);
+
+    const result = await advancedRAG.generateMonetizationStrategies(
+      userIdea,
+      options
+    );
+
+    res.json({
+      success: true,
+      userIdea,
+      ...result,
+      timestamp: new Date().toISOString(),
+    });
+  } catch (error) {
+    console.error("❌ Error in monetization analysis:", error);
+    res.status(500).json({
+      error: "Failed to analyze monetization strategies",
+      details: error.message,
+    });
+  }
+});
+
+// 4. Tech Stack Recommendations
+app.post("/api/advanced/tech-stack", async (req, res) => {
+  try {
+    const { userIdea, options = {} } = req.body;
+
+    if (!userIdea) {
+      return res.status(400).json({ error: "User idea is required" });
+    }
+
+    console.log(`🧩 Analyzing tech stack: "${userIdea}"`);
+
+    const result = await advancedRAG.generateTechStackSuggestions(
+      userIdea,
+      options
+    );
+
+    res.json({
+      success: true,
+      userIdea,
+      ...result,
+      timestamp: new Date().toISOString(),
+    });
+  } catch (error) {
+    console.error("❌ Error in tech stack analysis:", error);
+    res.status(500).json({
+      error: "Failed to analyze tech stack",
+      details: error.message,
+    });
+  }
+});
+
+// 5. Market Viability Score
+app.post("/api/advanced/viability-score", async (req, res) => {
+  try {
+    const { userIdea, options = {} } = req.body;
+
+    if (!userIdea) {
+      return res.status(400).json({ error: "User idea is required" });
+    }
+
+    console.log(`📊 Analyzing market viability: "${userIdea}"`);
+
+    const result = await advancedRAG.generateViabilityScore(userIdea, options);
+
+    res.json({
+      success: true,
+      userIdea,
+      ...result,
+      timestamp: new Date().toISOString(),
+    });
+  } catch (error) {
+    console.error("❌ Error in viability analysis:", error);
+    res.status(500).json({
+      error: "Failed to analyze market viability",
+      details: error.message,
+    });
+  }
+});
+
+// 6. Competitor Analysis with Links
+app.post("/api/advanced/competitors", async (req, res) => {
+  try {
+    const { userIdea, options = {} } = req.body;
+
+    if (!userIdea) {
+      return res.status(400).json({ error: "User idea is required" });
+    }
+
+    console.log(`🔗 Analyzing competitors: "${userIdea}"`);
+
+    const result = await advancedRAG.generateCompetitorAnalysis(
+      userIdea,
+      options
+    );
+
+    res.json({
+      success: true,
+      userIdea,
+      ...result,
+      timestamp: new Date().toISOString(),
+    });
+  } catch (error) {
+    console.error("❌ Error in competitor analysis:", error);
+    res.status(500).json({
+      error: "Failed to analyze competitors",
+      details: error.message,
+    });
+  }
+});
+
+// 7. Idea Refinement Suggestions
+app.post("/api/advanced/refinement", async (req, res) => {
+  try {
+    const { userIdea, options = {} } = req.body;
+
+    if (!userIdea) {
+      return res.status(400).json({ error: "User idea is required" });
+    }
+
+    console.log(`🔁 Generating refinement suggestions: "${userIdea}"`);
+
+    const result = await advancedRAG.generateRefinementSuggestions(
+      userIdea,
+      options
+    );
+
+    res.json({
+      success: true,
+      userIdea,
+      ...result,
+      timestamp: new Date().toISOString(),
+    });
+  } catch (error) {
+    console.error("❌ Error in refinement analysis:", error);
+    res.status(500).json({
+      error: "Failed to generate refinement suggestions",
+      details: error.message,
+    });
+  }
+});
+
+// 8. Investor Pitch Draft Generator
+app.post("/api/advanced/pitch-draft", async (req, res) => {
+  try {
+    const { userIdea, options = {} } = req.body;
+
+    if (!userIdea) {
+      return res.status(400).json({ error: "User idea is required" });
+    }
+
+    console.log(`📋 Generating pitch draft: "${userIdea}"`);
+
+    const result = await advancedRAG.generatePitchDraft(userIdea, options);
+
+    res.json({
+      success: true,
+      userIdea,
+      ...result,
+      timestamp: new Date().toISOString(),
+    });
+  } catch (error) {
+    console.error("❌ Error in pitch generation:", error);
+    res.status(500).json({
+      error: "Failed to generate pitch draft",
+      details: error.message,
+    });
+  }
+});
+
+// 9. Regional Startup Gaps Analysis
+app.post("/api/advanced/regional-gaps", async (req, res) => {
+  try {
+    const { userIdea, options = {} } = req.body;
+
+    if (!userIdea) {
+      return res.status(400).json({ error: "User idea is required" });
+    }
+
+    console.log(`🌍 Analyzing regional gaps: "${userIdea}"`);
+
+    const result = await advancedRAG.generateRegionalGapAnalysis(
+      userIdea,
+      options
+    );
+
+    res.json({
+      success: true,
+      userIdea,
+      ...result,
+      timestamp: new Date().toISOString(),
+    });
+  } catch (error) {
+    console.error("❌ Error in regional analysis:", error);
+    res.status(500).json({
+      error: "Failed to analyze regional gaps",
+      details: error.message,
+    });
+  }
+});
+
+// 10. Comprehensive Analysis (All-in-One)
+app.post("/api/advanced/full-analysis", async (req, res) => {
+  try {
+    const { userIdea, options = {} } = req.body;
+
+    if (!userIdea) {
+      return res.status(400).json({ error: "User idea is required" });
+    }
+
+    console.log(`🚀 Running comprehensive analysis: "${userIdea}"`);
+
+    const results = {};
+    const errors = {};
+
+    // Run all analyses in parallel for efficiency
+    const analyses = [
+      { key: "differentiation", method: "generateIdeaDifferentiation" },
+      { key: "targetMarket", method: "generateTargetMarketSuggestions" },
+      { key: "monetization", method: "generateMonetizationStrategies" },
+      { key: "techStack", method: "generateTechStackSuggestions" },
+      { key: "viability", method: "generateViabilityScore" },
+      { key: "competitors", method: "generateCompetitorAnalysis" },
+      { key: "refinement", method: "generateRefinementSuggestions" },
+      { key: "pitch", method: "generatePitchDraft" },
+      { key: "regionalGaps", method: "generateRegionalGapAnalysis" },
+    ];
+
+    const promises = analyses.map(async (analysis) => {
+      try {
+        const result = await advancedRAG[analysis.method](userIdea, options);
+        results[analysis.key] = result;
+      } catch (error) {
+        console.error(`❌ Error in ${analysis.key}:`, error.message);
+        errors[analysis.key] = error.message;
+      }
+    });
+
+    await Promise.all(promises);
+
+    res.json({
+      success: true,
+      userIdea,
+      results,
+      errors: Object.keys(errors).length > 0 ? errors : null,
+      timestamp: new Date().toISOString(),
+      summary: {
+        completedAnalyses: Object.keys(results).length,
+        totalAnalyses: analyses.length,
+        successRate: `${Math.round(
+          (Object.keys(results).length / analyses.length) * 100
+        )}%`,
+      },
+    });
+  } catch (error) {
+    console.error("❌ Error in comprehensive analysis:", error);
+    res.status(500).json({
+      error: "Failed to run comprehensive analysis",
+      details: error.message,
+    });
   }
 });
 
