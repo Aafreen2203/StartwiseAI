@@ -5,7 +5,7 @@ async function askOllama(promptText) {
     const response = await axios.post(
       "http://localhost:11434/api/generate",
       {
-        model: "mistral",
+        model: "mistral:latest",
         prompt: promptText,
         stream: false,
       },
