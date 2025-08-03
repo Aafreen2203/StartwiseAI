@@ -449,7 +449,7 @@ export const HeroSection = ({ onScrollToForm }: HeroSectionProps) => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <motion.div
+            {/* <motion.div
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-6"
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
@@ -458,7 +458,7 @@ export const HeroSection = ({ onScrollToForm }: HeroSectionProps) => {
             >
               <Sparkles className="w-4 h-4 text-accent" />
               <span className="text-sm font-medium">Powered by Advanced AI</span>
-            </motion.div>
+            </motion.div> */}
 
             <motion.h2
               className="text-4xl md:text-5xl font-bold mb-8"
@@ -483,7 +483,7 @@ export const HeroSection = ({ onScrollToForm }: HeroSectionProps) => {
             </motion.p>
 
             {/* Stats bar */}
-            <motion.div
+            {/* <motion.div
               className="flex flex-wrap justify-center gap-8 mt-12"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -508,7 +508,7 @@ export const HeroSection = ({ onScrollToForm }: HeroSectionProps) => {
                   </div>
                 </motion.div>
               ))}
-            </motion.div>
+            </motion.div> */}
           </motion.div>
 
           {/* Features Grid */}
