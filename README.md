@@ -115,7 +115,7 @@ bun dev
 ### Environment Setup
 
 1. **Flowise API**: Ensure your Flowise API is running on `http://localhost:3000`
-2. **API Endpoint**: The application uses endpoint `ef70d4dd-adea-47c3-9e1c-217214805adc`
+2. **API Endpoint**: Configure the application with your specific Flowise prediction endpoint ID
 3. **CORS**: Configure Flowise to allow requests from your frontend domain
 
 ## 🔧 Backend Architecture
@@ -152,8 +152,10 @@ Raw API Response → Content Extraction → Artifact Removal → Section Parsing
 
 ```typescript
 const FLOWISE_API_URL =
-  "http://localhost:3000/api/v1/prediction/ef70d4dd-adea-47c3-9e1c-217214805adc";
+  "http://localhost:3000/api/v1/prediction/{YOUR_FLOWISE_ENDPOINT_ID}";
 ```
+
+**Note**: Replace `{YOUR_FLOWISE_ENDPOINT_ID}` with your actual Flowise prediction endpoint identifier.
 
 ### Request Format
 
