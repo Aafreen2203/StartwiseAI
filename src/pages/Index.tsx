@@ -3,12 +3,13 @@ import { HeroSection } from '@/components/HeroSection';
 import { PitchForm } from '@/components/PitchForm';
 import { PitchResults } from '@/components/PitchResults';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { StartwiseAIService } from '@/services/startwiseApi';
 import { FlowiseService } from '@/services/flowiseApi';
 import { useToast } from '@/hooks/use-toast';
 
 type AppState = 'hero' | 'form' | 'results' | 'loading';
 
-interface PitchFormData {
+interface StartupEvaluationData {
   startup_idea: string;
   industry: string;
   target_audience: string;
@@ -17,7 +18,7 @@ interface PitchFormData {
 
 const Index = () => {
   const [appState, setAppState] = useState<AppState>('hero');
-  const [pitchData, setPitchData] = useState<string>('');
+  const [evaluationData, setEvaluationData] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
   const formRef = useRef<HTMLElement>(null);
   const { toast } = useToast();
@@ -32,30 +33,33 @@ const Index = () => {
     }, 100);
   };
 
-  const handleFormSubmit = async (formData: PitchFormData) => {
+  const handleFormSubmit = async (formData: StartupEvaluationData) => {
     setIsLoading(true);
     setAppState('loading');
 
     try {
       toast({
-        title: "Generating your pitch deck...",
-        description: "Our AI is analyzing your startup idea and creating a comprehensive pitch deck.",
+        title: "Evaluating your startup idea...",
+        description: "StartwiseAI is analyzing your idea with comprehensive market research and recommendations.",
       });
 
+      console.log('Sending request to your Flowise API:', formData);
       const result = await FlowiseService.generatePitchDeck(formData);
-      setPitchData(result);
+      console.log('Received evaluation from your Flowise API:', result);
+      
+      setEvaluationData(result);
       setAppState('results');
 
       toast({
-        title: "Pitch deck generated!",
-        description: "Your investor-ready pitch deck is now ready for review.",
+        title: "Evaluation complete!",
+        description: "Your comprehensive startup evaluation is ready for review.",
       });
     } catch (error) {
-      console.error('Error generating pitch deck:', error);
+      console.error('Error evaluating startup idea:', error);
       
       toast({
-        title: "Generation failed",
-        description: error instanceof Error ? error.message : "Failed to generate pitch deck. Please try again.",
+        title: "Evaluation failed",
+        description: error instanceof Error ? error.message : "Failed to evaluate startup idea. Please try again.",
         variant: "destructive"
       });
       
@@ -67,7 +71,7 @@ const Index = () => {
 
   const handleGoBack = () => {
     setAppState('form');
-    setPitchData('');
+    setEvaluationData('');
     setTimeout(() => {
       const formElement = document.getElementById('pitch-form');
       if (formElement) {
@@ -90,12 +94,12 @@ const Index = () => {
     }, 100);
   };
 
-  if (appState === 'results' && pitchData) {
+  if (appState === 'results' && evaluationData) {
     return (
       <>
         <ThemeToggle />
         <PitchResults 
-          pitchData={pitchData}
+          pitchData={evaluationData}
           onGoBack={handleGoBack}
           onRegenerate={handleRegenerate}
         />
@@ -112,10 +116,10 @@ const Index = () => {
             <div className="w-20 h-20 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse-glow">
               <div className="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
             </div>
-            <h2 className="text-2xl font-bold mb-4 gradient-text">Crafting Your Pitch Deck</h2>
+            <h2 className="text-2xl font-bold mb-4 gradient-text">Analyzing Your Startup Idea</h2>
             <p className="text-muted-foreground leading-relaxed">
-              Our AI is analyzing your startup idea and generating a comprehensive, 
-              investor-ready pitch deck. This usually takes 30-60 seconds.
+              StartwiseAI is conducting a comprehensive evaluation of your startup idea, 
+              including market analysis, tech recommendations, and competitive insights. This usually takes 30-60 seconds.
             </p>
             <div className="mt-8 flex justify-center">
               <div className="flex space-x-2">

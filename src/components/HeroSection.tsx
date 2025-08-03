@@ -91,8 +91,7 @@ export const HeroSection = ({ onScrollToForm }: HeroSectionProps) => {
           ref={titleRef}
           className="text-6xl md:text-8xl font-bold mb-6 leading-tight"
         >
-          <span className="gradient-text">PitchCraft</span>{' '}
-          <span className="text-foreground">AI</span>
+          <span className="gradient-text">StartwiseAI</span>
         </h1>
 
         {/* Subtitle */}
@@ -100,8 +99,8 @@ export const HeroSection = ({ onScrollToForm }: HeroSectionProps) => {
           ref={subtitleRef}
           className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed"
         >
-          Transform your startup idea into an investor-ready pitch deck in minutes. 
-          Our AI agent creates comprehensive, professional presentations that get results.
+          Comprehensive startup idea evaluation powered by AI. Get market insights, tech recommendations, 
+          competitive analysis, and investment-ready pitches in minutes.
         </p>
 
         {/* CTA Button */}
@@ -112,7 +111,7 @@ export const HeroSection = ({ onScrollToForm }: HeroSectionProps) => {
             onClick={onScrollToForm}
             className="group"
           >
-            Generate Your Pitch Deck
+            Evaluate Your Startup Idea
             <ArrowDown className="ml-2 h-5 w-5 group-hover:translate-y-1 transition-transform" />
           </Button>
         </div>
@@ -123,9 +122,9 @@ export const HeroSection = ({ onScrollToForm }: HeroSectionProps) => {
             <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center mb-4 mx-auto">
               <Sparkles className="h-6 w-6 text-white" />
             </div>
-            <h3 className="text-lg font-semibold mb-2">AI-Powered Content</h3>
+            <h3 className="text-lg font-semibold mb-2">AI-Powered Analysis</h3>
             <p className="text-muted-foreground text-sm">
-              Advanced AI analyzes your idea and generates compelling, structured content for all 10 essential pitch deck sections.
+              Comprehensive evaluation including uniqueness check, tech stack recommendations, and market insights powered by RAG technology.
             </p>
           </div>
 
@@ -133,9 +132,9 @@ export const HeroSection = ({ onScrollToForm }: HeroSectionProps) => {
             <div className="w-12 h-12 bg-gradient-secondary rounded-xl flex items-center justify-center mb-4 mx-auto">
               <Zap className="h-6 w-6 text-white" />
             </div>
-            <h3 className="text-lg font-semibold mb-2">Lightning Fast</h3>
+            <h3 className="text-lg font-semibold mb-2">Complete Evaluation</h3>
             <p className="text-muted-foreground text-sm">
-              Get your complete pitch deck in under 5 minutes. No more weeks of struggling with content and design.
+              Get 6 comprehensive sections: uniqueness, tech stack, pitch, competitors, improvements, and success probability analysis.
             </p>
           </div>
 
@@ -143,9 +142,9 @@ export const HeroSection = ({ onScrollToForm }: HeroSectionProps) => {
             <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center mb-4 mx-auto">
               <Target className="h-6 w-6 text-white" />
             </div>
-            <h3 className="text-lg font-semibold mb-2">Investor-Ready</h3>
+            <h3 className="text-lg font-semibold mb-2">Data-Driven Insights</h3>
             <p className="text-muted-foreground text-sm">
-              Professional format following proven frameworks that investors expect and understand.
+              Evidence-based recommendations with market stats, competitor analysis, and success probability metrics.
             </p>
           </div>
         </div>

@@ -39,6 +39,15 @@ interface PitchResultsProps {
 }
 
 const sectionIcons: { [key: string]: React.ElementType } = {
+  'Uniqueness Check': Target,
+  'Tech Stack Recommendation': Zap,
+  'Pitch Generation': Lightbulb,
+  'Similar Startups': Users,
+  'Improvement Suggestions': TrendingUp,
+  'Success Probability & Market Stats': BarChart,
+  'Success Probability': BarChart,
+  'Market Stats': BarChart,
+  // Legacy support for old format
   'Problem': Target,
   'Solution': Lightbulb,
   'Market Opportunity': TrendingUp,
@@ -59,7 +68,9 @@ export const PitchResults = ({ pitchData, onGoBack, onRegenerate }: PitchResults
 
   useEffect(() => {
     // Parse the pitch data into sections
+    console.log('Raw pitch data received:', pitchData);
     const parsedSections = parsePitchData(pitchData);
+    console.log('Parsed sections:', parsedSections);
     setSections(parsedSections);
   }, [pitchData]);
 
@@ -117,37 +128,101 @@ export const PitchResults = ({ pitchData, onGoBack, onRegenerate }: PitchResults
     let currentSection: Partial<PitchSection> | null = null;
 
     for (const line of lines) {
-      // Check if line is a section header (contains numbers or is all caps with common section names)
-      const isHeader = /^\d+\.?\s/.test(line) || 
-                      Object.keys(sectionIcons).some(title => 
-                        line.toUpperCase().includes(title.toUpperCase())
-                      );
+      const trimmedLine = line.trim();
+      
+      // Skip empty lines
+      if (!trimmedLine) continue;
 
-      if (isHeader) {
+      // Check if line is a section header (## Section Name or # Section Name)
+      const headerMatch = trimmedLine.match(/^#{1,6}\s*(.+)$/);
+      if (headerMatch) {
         // Save previous section
         if (currentSection?.title && currentSection?.content) {
+          const sectionTitle = currentSection.title.replace(/^\d+\.\s*/, '').trim();
           sections.push({
-            title: currentSection.title,
-            content: currentSection.content,
-            icon: sectionIcons[currentSection.title] || FileText
+            title: sectionTitle,
+            content: currentSection.content.trim(),
+            icon: sectionIcons[sectionTitle] || FileText
           });
         }
 
         // Start new section
-        const title = line.replace(/^\d+\.?\s*/, '').replace(/[:.-]/g, '').trim();
+        const title = headerMatch[1].replace(/^\d+\.\s*/, '').trim();
         currentSection = { title, content: '' };
-      } else if (currentSection && line.trim()) {
-        // Add content to current section
-        currentSection.content += (currentSection.content ? '\n' : '') + line.trim();
+        continue;
+      }
+
+      // Check if line is a numbered section (1. Problem, 2. Solution, etc.)
+      const numberedMatch = trimmedLine.match(/^(\d+)\.\s*\*?\*?(.+?)\*?\*?\s*$/);
+      if (numberedMatch) {
+        // Save previous section
+        if (currentSection?.title && currentSection?.content) {
+          const sectionTitle = currentSection.title.replace(/^\d+\.\s*/, '').trim();
+          sections.push({
+            title: sectionTitle,
+            content: currentSection.content.trim(),
+            icon: sectionIcons[sectionTitle] || FileText
+          });
+        }
+
+        // Start new section
+        const title = numberedMatch[2].replace(/[:.-]/g, '').trim();
+        currentSection = { title, content: '' };
+        continue;
+      }
+
+      // Check if line contains any of our expected section names (case insensitive)
+      const sectionNames = Object.keys(sectionIcons);
+      const matchedSection = sectionNames.find(sectionName => {
+        const regex = new RegExp(`\\b${sectionName.replace(/\s+/g, '\\s+')}\\b`, 'i');
+        return regex.test(trimmedLine) && trimmedLine.length < 100; // Likely a header, not content
+      });
+
+      if (matchedSection && trimmedLine.length < 100) {
+        // Save previous section
+        if (currentSection?.title && currentSection?.content) {
+          const sectionTitle = currentSection.title.replace(/^\d+\.\s*/, '').trim();
+          sections.push({
+            title: sectionTitle,
+            content: currentSection.content.trim(),
+            icon: sectionIcons[sectionTitle] || FileText
+          });
+        }
+
+        // Start new section
+        currentSection = { title: matchedSection, content: '' };
+        continue;
+      }
+
+      // Add content to current section
+      if (currentSection) {
+        // Skip lines that look like notes or metadata
+        if (!trimmedLine.startsWith('*Note:') && 
+            !trimmedLine.startsWith('Note:') && 
+            !trimmedLine.includes('demo response') &&
+            !trimmedLine.includes('This is a') &&
+            trimmedLine.length > 5) {
+          currentSection.content += (currentSection.content ? '\n' : '') + trimmedLine;
+        }
       }
     }
 
     // Add final section
     if (currentSection?.title && currentSection?.content) {
+      const sectionTitle = currentSection.title.replace(/^\d+\.\s*/, '').trim();
       sections.push({
-        title: currentSection.title,
-        content: currentSection.content,
-        icon: sectionIcons[currentSection.title] || FileText
+        title: sectionTitle,
+        content: currentSection.content.trim(),
+        icon: sectionIcons[sectionTitle] || FileText
+      });
+    }
+
+    // If no sections were parsed, try to create a single section with all content
+    if (sections.length === 0 && data.trim()) {
+      sections.push({
+        title: 'Generated Content',
+        content: data.trim(),
+        icon: FileText
       });
     }
 

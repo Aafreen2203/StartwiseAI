@@ -25,10 +25,10 @@ interface StartupEvaluationResult {
 const FLOWISE_API_URL =
   "http://localhost:3000/api/v1/prediction/ef70d4dd-adea-47c3-9e1c-217214805adc";
 
-export class FlowiseService {
-  static async generatePitchDeck(request: StartwiseRequest): Promise<string> {
+export class StartwiseAIService {
+  static async evaluateStartupIdea(request: StartwiseRequest): Promise<string> {
     try {
-      // Format the question/prompt for the AI agent
+      // Format the comprehensive evaluation prompt for the AI agent
       const prompt = this.formatEvaluationPrompt(request);
 
       // Prepare the request payload
@@ -71,7 +71,7 @@ export class FlowiseService {
 
       return content;
     } catch (error) {
-      console.error("Flowise API Error:", error);
+      console.error("StartwiseAI API Error:", error);
 
       // Return a fallback response if the API is not available
       if (error instanceof Error && error.message.includes("Failed to fetch")) {
@@ -314,5 +314,10 @@ To strengthen your startup idea:
 **Funding:** Consider $100K-500K for initial development, $1M-5M for Series A scaling.
 
 *Note: This is a demo evaluation. In production, StartwiseAI would access real-time market data, competitor analysis, and industry reports to provide more specific insights.*`;
+  }
+
+  // Legacy method for backward compatibility
+  static async generatePitchDeck(request: StartwiseRequest): Promise<string> {
+    return this.evaluateStartupIdea(request);
   }
 }

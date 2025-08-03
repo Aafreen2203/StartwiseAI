@@ -11,7 +11,7 @@ import { useToast } from '@/hooks/use-toast';
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface PitchFormData {
+interface StartupEvaluationData {
   startup_idea: string;
   industry: string;
   target_audience: string;
@@ -19,12 +19,12 @@ interface PitchFormData {
 }
 
 interface PitchFormProps {
-  onSubmit: (data: PitchFormData) => void;
+  onSubmit: (data: StartupEvaluationData) => void;
   isLoading: boolean;
 }
 
 export const PitchForm = ({ onSubmit, isLoading }: PitchFormProps) => {
-  const [formData, setFormData] = useState<PitchFormData>({
+  const [formData, setFormData] = useState<StartupEvaluationData>({
     startup_idea: '',
     industry: '',
     target_audience: ''
@@ -54,7 +54,7 @@ export const PitchForm = ({ onSubmit, isLoading }: PitchFormProps) => {
     );
   }, []);
 
-  const handleInputChange = (field: keyof PitchFormData, value: string) => {
+  const handleInputChange = (field: keyof StartupEvaluationData, value: string) => {
     setFormData(prev => ({
       ...prev,
       [field]: value
@@ -131,10 +131,10 @@ export const PitchForm = ({ onSubmit, isLoading }: PitchFormProps) => {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Tell Us About Your <span className="gradient-text">Startup</span>
+            Evaluate Your <span className="gradient-text">Startup Idea</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Provide some details about your startup idea, and our AI will create a comprehensive pitch deck for you.
+            Get comprehensive AI-powered analysis including market insights, tech recommendations, and competitive evaluation.
           </p>
         </div>
 
@@ -142,10 +142,10 @@ export const PitchForm = ({ onSubmit, isLoading }: PitchFormProps) => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Send className="h-5 w-5" />
-              Startup Information
+              Startup Idea Evaluation
             </CardTitle>
             <CardDescription>
-              Fill out the form below to generate your AI-powered pitch deck
+              Submit your startup idea for comprehensive AI analysis and recommendations
             </CardDescription>
           </CardHeader>
           <CardContent>
