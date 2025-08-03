@@ -140,17 +140,17 @@ export const HeroSection = ({ onScrollToForm }: HeroSectionProps) => {
 
         <div className="relative z-10 max-w-7xl mx-auto text-center">
           {/* Badge */}
-          <div className="inline-flex items-center space-x-2 glass-card rounded-full px-6 py-2 mb-8">
+          {/* <div className="inline-flex items-center space-x-2 glass-card rounded-full px-6 py-2 mb-8">
             <Star className="h-4 w-4 text-secondary" />
             <span className="text-sm font-medium">AI-Powered Startup Evaluation</span>
             <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
-          </div>
+          </div> */}
 
           {/* Main Headline */}
-          <h1 ref={titleRef} className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
+          <h1 ref={titleRef} className="text-5xl md:text-7xl lg:text-8xl font-bold mb-12 leading-relaxed">
             <span className="gradient-text">Transform Ideas Into</span>
             <br />
-            <div className="gradient-text">
+            <div className="gradient-text pt-2 pb-4">
               <TextType
                 text={["Investment-Ready Pitches", "Market Intelligence", "Strategic Success"]}
                 typingSpeed={75}
