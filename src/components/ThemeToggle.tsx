@@ -42,12 +42,12 @@ export const ThemeToggle = () => {
       variant="ghost"
       size="icon"
       onClick={toggleTheme}
-      className="fixed top-6 right-6 z-50 glass-card"
+      className="fixed top-6 right-6 z-50 bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300 shadow-lg rounded-lg"
     >
       {isDark ? (
-        <Sun className="h-5 w-5" />
+        <Sun className="h-5 w-5 text-yellow-400" />
       ) : (
-        <Moon className="h-5 w-5" />
+        <Moon className="h-5 w-5 text-slate-700" />
       )}
       <span className="sr-only">Toggle theme</span>
     </Button>
