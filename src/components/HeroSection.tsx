@@ -316,7 +316,7 @@ export const HeroSection = ({ onScrollToForm }: HeroSectionProps) => {
       }}>
         <LightRays
           raysOrigin="top-center"
-          raysColor="#ffffff"
+          raysColor="#C8B3F9"
           raysSpeed={1.5}
           lightSpread={0.8}
           rayLength={1.2}
