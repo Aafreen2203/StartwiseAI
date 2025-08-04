@@ -98,6 +98,7 @@ User Input → Frontend Validation → Service Layer → HTTP Request → Flowis
 - Node.js (v18 or higher)
 - npm or bun package manager
 - Flowise API endpoint running locally
+- ChromaDB setup for vector storage
 
 ### Installation
 
@@ -116,6 +117,66 @@ npm run dev
 # or
 bun dev
 ```
+
+### 🔧 Setting Up Your Flowise RAG Agent
+
+#### Step 1: Install Flowise
+
+```bash
+npm install -g flowise
+npx flowise start
+```
+
+#### Step 2: Create RAG Agent Flow
+
+1. **Open Flowise UI**: Navigate to `http://localhost:3000`
+2. **Create New Chatflow**: Click "Add New Chatflow"
+3. **Add Document Loader**:
+   - Drag "Custom Document Loader" node
+   - Configure for PDF, DOCX, TXT file support
+4. **Add Text Splitter**:
+   - Use "Recursive Character Text Splitter"
+   - Set chunk size: 1000, overlap: 200
+5. **Add Embeddings**:
+   - Use "HuggingFace Embeddings"
+   - Model: "all-MiniLM-L6-v2"
+6. **Add Vector Store**:
+   - Use "ChromaDB" node
+   - Collection name: "startup_knowledge_base"
+7. **Add Retrieval Tool**:
+   - Connect to ChromaDB for similarity search
+   - Set top_k: 10, similarity threshold: 0.7
+8. **Add GPT Agent**:
+   - Use "GPT-4" or "GPT-3.5-turbo"
+   - Connect retrieval tool as available tool
+9. **Configure Agent Memory**:
+   - Add "Agent Memory" for conversation context
+10. **Add End Node**:
+    - Final response formatting
+
+#### Step 3: Configure Agent Prompt
+
+```text
+You are an expert startup advisor with access to a comprehensive knowledge base.
+Analyze the provided startup idea and return a structured evaluation covering:
+
+1. Uniqueness Check - Market differentiation and competitive analysis
+2. Tech Stack Recommendation - Technology choices and architecture
+3. Pitch Generation - Investor-ready elevator pitch
+4. Similar Startups - Market landscape and competitors
+5. Improvement Suggestions - Enhancement recommendations
+6. Success Probability - Market statistics and viability assessment
+
+Use the retrieved context from the knowledge base to provide data-driven insights.
+Structure your response with clear section headers and actionable recommendations.
+```
+
+#### Step 4: Deploy and Test
+
+1. **Save Chatflow**: Save your RAG agent configuration
+2. **Get API Endpoint**: Copy the prediction API URL
+3. **Update Frontend**: Replace `{YOUR_FLOWISE_ENDPOINT_ID}` in the code
+4. **Test Integration**: Submit a startup idea to verify the pipeline
 
 ### Environment Setup
 
@@ -151,9 +212,71 @@ bun dev
 Raw API Response → Content Extraction → Artifact Removal → Section Parsing → Formatted Output
 ```
 
-## 🌐 Flowise API Integration
+## 🌐 Flowise RAG Agent Architecture
 
-### API Configuration
+### RAG Agent Design Overview
+
+This project utilizes a sophisticated Flowise RAG (Retrieval-Augmented Generation) agent that combines multiple AI technologies for comprehensive startup evaluation. The agent architecture includes document processing, vector embeddings, similarity search, and intelligent response generation.
+
+### 🏗️ Flowise Agent Components
+
+#### Data Ingestion Layer
+
+- **Chrome Embeddings**: Web scraping and real-time data collection
+- **Custom Document Loader**: Handles multiple file formats (PDF, DOCX, TXT)
+- **Retrieval Tool**: Processes user uploads and external documents
+
+#### Knowledge Processing Pipeline
+
+- **ChromaDB Vector Store**: High-performance vector database for embeddings
+- **Recursive Character Text Splitter**: Intelligent document chunking
+- **HuggingFace Embeddings**: Advanced text-to-vector conversion
+- **Semantic Search**: Context-aware information retrieval
+
+#### Intelligence Layer
+
+- **GPT-4 Agent**: Primary reasoning and analysis engine
+- **Sequential Node Processing**: Multi-step evaluation workflow
+- **Agent Memory**: Maintains context across evaluation stages
+- **ConditionalNode**: Dynamic response routing based on content
+
+#### Response Generation
+
+- **End Node**: Final response formatting and delivery
+- **LLM Node**: Language model for natural text generation
+- **Loop Detection**: Prevents circular processing issues
+
+### 🔧 RAG Agent Configuration
+
+#### Vector Database Setup (ChromaDB)
+
+```typescript
+// ChromaDB Configuration
+Collection Name: "startup_knowledge_base"
+Embedding Model: "all-MiniLM-L6-v2"
+Similarity Threshold: 0.7
+Max Documents Retrieved: 10
+```
+
+#### Document Processing Chain
+
+```mermaid
+Document Upload → Text Splitting → Embedding Generation → Vector Storage → Similarity Search → Context Retrieval → LLM Processing → Formatted Response
+```
+
+#### Agent Workflow
+
+1. **Document Ingestion**: Processes uploaded files and web content
+2. **Embedding Creation**: Converts text to vector representations
+3. **Knowledge Storage**: Stores embeddings in ChromaDB
+4. **Query Processing**: Analyzes user startup idea
+5. **Context Retrieval**: Finds relevant information from knowledge base
+6. **Intelligent Analysis**: GPT-4 agent performs comprehensive evaluation
+7. **Response Formatting**: Structures output into 6 evaluation sections
+
+### 🚀 API Integration
+
+#### API Configuration
 
 ```typescript
 const FLOWISE_API_URL =
@@ -170,6 +293,22 @@ const FLOWISE_API_URL =
   "uploads": ["base64_encoded_file"] // Optional
 }
 ```
+
+### RAG Agent Capabilities
+
+#### Knowledge Sources
+
+- **Startup Databases**: YCombinator, Crunchbase, TechCrunch archives
+- **Market Research**: Industry reports and analysis documents
+- **Technical Documentation**: Best practices and technology guides
+- **Investment Data**: Funding trends and investor preferences
+
+#### Intelligent Features
+
+- **Context-Aware Analysis**: Uses retrieved documents for informed responses
+- **Multi-Modal Processing**: Handles text, images, and structured data
+- **Semantic Understanding**: Goes beyond keyword matching
+- **Dynamic Knowledge Updates**: Continuously learns from new documents
 
 ### Response Processing
 
@@ -274,6 +413,24 @@ npm run preview
 
 ### Common Issues
 
+#### Flowise RAG Agent Setup
+
+- **Issue**: ChromaDB connection failures
+- **Solution**: Ensure ChromaDB is properly installed and running
+- **Command**: `pip install chromadb` and verify collection creation
+
+#### Vector Embeddings
+
+- **Issue**: Embedding generation errors
+- **Solution**: Check HuggingFace model download and API limits
+- **Alternative**: Use OpenAI embeddings if HuggingFace fails
+
+#### Document Processing
+
+- **Issue**: File upload processing failures
+- **Solution**: Verify document loader supports file format
+- **Supported**: PDF, DOCX, TXT, HTML, CSV formats
+
 #### Flowise API Connection
 
 - **Issue**: API requests failing
@@ -291,6 +448,26 @@ npm run preview
 - **Issue**: File uploads not working
 - **Solution**: Check file size limits and Base64 encoding
 - **Supported**: Common document formats (PDF, DOC, TXT)
+
+### RAG Agent Debugging
+
+#### Vector Search Issues
+
+```bash
+# Check ChromaDB collections
+curl -X GET "http://localhost:8000/api/v1/collections"
+
+# Verify embedding dimensions
+curl -X POST "http://localhost:8000/api/v1/collections/{collection_name}/query" \
+  -H "Content-Type: application/json" \
+  -d '{"query_texts": ["test query"], "n_results": 1}'
+```
+
+#### Agent Memory Problems
+
+- **Clear Memory**: Reset agent memory between sessions
+- **Context Length**: Monitor token usage and context window limits
+- **Memory Persistence**: Ensure conversation history is properly stored
 
 ### Debugging Tools
 
