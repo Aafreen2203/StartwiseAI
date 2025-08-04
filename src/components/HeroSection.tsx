@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowDown, Sparkles, TrendingUp, Lightbulb, Star, Zap, Target, Users, BarChart3, Rocket, Shield, Brain, DollarSign } from "lucide-react"
 // import { PiShootingStarFill } from "react-icons/pi"
 import TextType from "@/components/ui/texttype"
+import LightRays from '@/components/ui/lightrays';
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -303,8 +304,32 @@ export const HeroSection = ({ onScrollToForm }: HeroSectionProps) => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-background">
+      {/* LightRays Background - Full Screen */}
+      <div style={{ 
+        width: '100%', 
+        height: '100vh', 
+        position: 'fixed', 
+        top: 0, 
+        left: 0, 
+        zIndex: 0,
+        pointerEvents: 'none'
+      }}>
+        <LightRays
+          raysOrigin="top-center"
+          raysColor="#ffffff"
+          raysSpeed={1.5}
+          lightSpread={0.8}
+          rayLength={1.2}
+          followMouse={true}
+          mouseInfluence={0.1}
+          noiseAmount={0.1}
+          distortion={0.05}
+          className="custom-rays"
+        />
+      </div>
+
       {/* Navigation Header */}
-      <nav className="relative z-50 px-6 py-6">
+      <nav className="relative z-50 px-6 py-6 bg-transparent">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-3">
