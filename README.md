@@ -2,18 +2,18 @@
 
 ## 📋 Table of Contents
 
-- [Overview](#overview)
-- [Features](#features)
-- [Technology Stack](#technology-stack)
-- [Project Architecture](#project-architecture)
-- [Getting Started](#getting-started)
-- [Backend Architecture](#backend-architecture)
-- [Flowise API Integration](#flowise-api-integration)
-- [Usage Guide](#usage-guide)
-- [Project Structure](#project-structure)
-- [Development Workflow](#development-workflow)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
+- [🌟 Overview](#-overview)
+- [✨ Features](#-features)
+- [💻 Technology Stack](#-technology-stack)
+- [🏗️ Project Architecture](#️-project-architecture)
+- [🚀 Getting Started](#-getting-started)
+- [🔧 Backend Architecture](#-backend-architecture)
+- [🌐 Flowise API Integration](#-flowise-api-integration)
+- [📖 Usage Guide](#-usage-guide)
+- [📁 Project Structure](#-project-structure)
+- [🔄 Development Workflow](#-development-workflow)
+- [🛠️ Troubleshooting](#️-troubleshooting)
+- [🤝 Contributing](#-contributing)
 
 ## 🌟 Overview
 
@@ -56,7 +56,10 @@
 - **Tailwind CSS**: Utility-first CSS framework
 - **shadcn/ui**: Beautiful and accessible component library
 - **GSAP**: High-performance animations
+- **Framer Motion**: Smooth animations and transitions
 - **Vite**: Fast build tool and dev server
+- **React Router**: Client-side routing
+- **TanStack Query**: Data fetching and caching
 
 ### Backend Integration
 
@@ -64,6 +67,7 @@
 - **REST API**: HTTP communication with JSON payloads
 - **File Processing**: Base64 encoding for file uploads
 - **Error Recovery**: Fallback response generation
+- **Multi-Service Architecture**: Extended API functionality with multiple service layers
 
 ### Development Tools
 
@@ -81,10 +85,11 @@ User Input → Frontend Validation → Service Layer → HTTP Request → Flowis
 
 ### Core Components
 
-1. **Frontend Interface** (`src/pages/Index.tsx`)
-2. **Service Layer** (`src/services/flowiseApi.ts`)
-3. **UI Components** (`src/components/`)
-4. **Flowise Integration** (Custom API endpoint)
+1. **Landing Page** (`src/pages/Index.tsx`) - Main entry point with hero section
+2. **Evaluation Interface** (`src/pages/PitchFormPage.tsx`) - Dedicated evaluation page
+3. **Service Layer** (`src/services/flowiseApi.ts`) - Primary API integration
+4. **UI Components** (`src/components/`) - Reusable React components
+5. **Flowise Integration** (Custom API endpoint) - AI processing backend
 
 ## 🚀 Getting Started
 
@@ -204,22 +209,39 @@ const FLOWISE_API_URL =
 ai-pitch-builder/
 ├── src/
 │   ├── components/          # React components
-│   │   ├── ui/             # shadcn/ui components
-│   │   ├── HeroSection.tsx # Landing page hero
-│   │   ├── PitchForm.tsx   # Evaluation form
-│   │   └── PitchResults.tsx # Results display
+│   │   ├── ui/             # shadcn/ui components library
+│   │   ├── HeroSection.tsx # Landing page hero section
+│   │   ├── PitchForm.tsx   # Startup evaluation form
+│   │   ├── PitchResults.tsx # Results display component
+│   │   ├── ThemeToggle.tsx # Dark/light theme switcher
+│   │   └── themeprovider.tsx # Theme context provider
 │   ├── pages/
-│   │   ├── Index.tsx       # Main application page
+│   │   ├── Index.tsx       # Main landing page
+│   │   ├── PitchFormPage.tsx # Evaluation form page
 │   │   └── NotFound.tsx    # 404 error page
 │   ├── services/
-│   │   └── flowiseApi.ts   # Flowise API integration
+│   │   ├── flowiseApi.ts   # Main Flowise API integration
+│   │   ├── flowiseApi_new.ts # Extended API functionality
+│   │   └── startwiseApi.ts # Additional API services
+│   ├── hooks/
+│   │   ├── use-mobile.tsx  # Mobile detection hook
+│   │   └── use-toast.ts    # Toast notification hook
 │   ├── lib/
-│   │   └── utils.ts        # Utility functions
-│   └── hooks/              # Custom React hooks
-├── public/                 # Static assets
+│   │   └── utils.ts        # Utility functions and helpers
+│   ├── App.tsx             # Main application component
+│   ├── main.tsx            # Application entry point
+│   ├── index.css           # Global styles and CSS variables
+│   └── vite-env.d.ts       # Vite environment types
+├── public/
+│   ├── favicon.ico         # Application favicon
+│   ├── placeholder.svg     # Placeholder graphics
+│   └── robots.txt          # SEO robots configuration
 ├── components.json         # shadcn/ui configuration
 ├── tailwind.config.ts      # Tailwind CSS configuration
 ├── vite.config.ts          # Vite build configuration
+├── tsconfig.json           # TypeScript configuration
+├── eslint.config.js        # ESLint linting rules
+├── postcss.config.js       # PostCSS configuration
 └── package.json           # Dependencies and scripts
 ```
 

@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { motion, useInView, useMotionValue, useSpring } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowDown, Sparkles, TrendingUp, Lightbulb, Star, Zap, Target, Users, BarChart3, Rocket, Shield, Brain, DollarSign } from "lucide-react"
-import { PiShootingStarFill } from "react-icons/pi"
+// import { PiShootingStarFill } from "react-icons/pi"
 import TextType from "@/components/ui/texttype"
 
 gsap.registerPlugin(ScrollTrigger)
@@ -309,9 +309,9 @@ export const HeroSection = ({ onScrollToForm }: HeroSectionProps) => {
           {/* Logo */}
           <div className="flex items-center space-x-3">
             <div className="relative">
-              <div className="w-12 h-12 gradient-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/25">
+              {/* <div className="w-12 h-12 gradient-primary rounded-xl flex items-center justify-center">
                 <PiShootingStarFill className="h-7 w-7 text-white" />
-              </div>
+              </div> */}
               {/* <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-br from-accent to-secondary rounded-full flex items-center justify-center">
                 <Sparkles className="h-2.5 w-2.5 text-primary" />
               </div> */}

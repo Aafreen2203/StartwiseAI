@@ -136,10 +136,10 @@ export const PitchForm = ({ onSubmit, isLoading }: PitchFormProps) => {
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center space-x-2 glass-card rounded-full px-6 py-2 mb-6">
+          {/* <div className="inline-flex items-center space-x-2 glass-card rounded-full px-6 py-2 mb-6">
             <Sparkles className="h-4 w-4 text-accent" />
             <span className="text-sm font-medium">AI-Powered Evaluation</span>
-          </div>
+          </div> */}
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Evaluate Your <span className="gradient-text">Startup Idea</span>
           </h2>
@@ -152,9 +152,9 @@ export const PitchForm = ({ onSubmit, isLoading }: PitchFormProps) => {
         {/* Form Card */}
         <Card className="glass-card-solid border-2 border-primary/20 shadow-2xl shadow-primary/10">
           <CardHeader className="text-center pb-6">
-            <div className="w-16 h-16 gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-primary/30">
+            {/* <div className="w-16 h-16 gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-primary/30">
               <Zap className="h-8 w-8 text-white" />
-            </div>
+            </div> */}
             <CardTitle className="text-2xl font-bold gradient-text">Startup Idea Evaluation</CardTitle>
             <CardDescription className="text-base">
               Submit your startup idea for comprehensive AI analysis and recommendations

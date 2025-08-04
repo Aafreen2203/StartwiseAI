@@ -126,14 +126,14 @@ const PitchFormPage = () => {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-3">
-            <div className="relative">
+            {/* <div className="relative">
               <div className="w-12 h-12 gradient-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/25">
                 <Brain className="h-7 w-7 text-white" />
               </div>
               <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-br from-accent to-secondary rounded-full flex items-center justify-center">
                 <Sparkles className="h-2.5 w-2.5 text-primary" />
               </div>
-            </div>
+            </div> */}
             <div>
               <h1 className="text-2xl font-bold gradient-text">StartwiseAI</h1>
               <p className="text-xs text-muted-foreground font-medium">Startup Intelligence</p>
